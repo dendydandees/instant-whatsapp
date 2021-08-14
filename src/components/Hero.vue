@@ -25,9 +25,9 @@
           "
         ></vue-tel-input>
 
-        <!-- <span class="text-sm text-gray-200">
-          {{ phoneError }}
-        </span> -->
+        <span v-if="error" class="text-sm text-gray-200">
+          {{ error }}
+        </span>
       </div>
 
       <button
@@ -64,24 +64,31 @@ const dropdownOptions = {
 const inputOptions = {
   placeholder: 'on',
   autofocus: false,
-  id:"",
-  maxlength:25,
-  name:"telephone",
-  readonly:false,
-  required:true,
-  styleClasses:"rounded-md",
-  tabindex:0,
-  type:"tel",
+  id: '',
+  maxlength: 25,
+  name: 'telephone',
+  readonly: false,
+  required: true,
+  styleClasses: 'rounded-md',
+  tabindex: 0,
+  type: 'tel',
   placeholder: 'Masukan nomor ponsel',
 };
 
 // state
 const phone = ref(null);
-const change = ref(null)
+const error = ref('')
 
 // methods
 const submitForm = (e) => {
-  phone.value = e.target.elements.telephone.value.replaceAll('-', '').replace('0', '').replace('+', '')
+  if (!e.target.elements.telephone.value) {
+    return error.value = 'Nomor Ponsel tidak boleh kosong'
+  }
+
+  phone.value = e.target.elements.telephone.value
+    .replaceAll(/[^\d]/g, '')
+    .replace('62', '')
+
   window.open(
     `https://web.whatsapp.com/send?phone=62${phone.value}`,
     '_blank',

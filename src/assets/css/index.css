@@ -11,5 +11,5 @@ body {
 }
 
 #app {
-  @apply bg-gray-800 w-6/12 mx-auto min-h-screen transition-none;
+  @apply bg-gray-800 w-full lg:w-6/12 mx-auto min-h-screen transition-none;
 }
