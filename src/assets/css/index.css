@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply transition-all duration-300;
+}
+
+body {
+  @apply bg-gray-900 text-gray-200 container mx-auto transition-none;
+}
+
+#app {
+  @apply bg-gray-800 w-6/12 mx-auto min-h-screen transition-none;
+}
