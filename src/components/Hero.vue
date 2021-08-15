@@ -7,7 +7,7 @@
     <form @submit.prevent="submitForm" ref="form" class="p-4 space-y-6 my-8">
       <div class="transition-all duration-300">
         <label for="phone" class="sr-only">Nomor Telepon</label>
-        <vue-tel-input
+        <VueTelInput
           v-model="phone"
           :dropdownOptions="dropdownOptions"
           :inputOptions="inputOptions"
@@ -23,7 +23,7 @@
             focus:ring-purple-400
             focus:ring-opacity-50
           "
-        ></vue-tel-input>
+        ></VueTelInput>
 
         <span v-if="error" class="text-sm text-gray-200">
           {{ error }}
@@ -49,50 +49,59 @@
   </section>
 </template>
 
-<script setup>
-import { watch, ref } from 'vue';
+<script>
 import { VueTelInput } from 'vue3-tel-input';
 import 'vue3-tel-input/dist/vue3-tel-input.css';
 
-// vue tel input options
-const dropdownOptions = {
-  showDialCodeInList: true,
-  showDialCodeInSelection: true,
-  showFlags: true,
-  tabindex: 0,
-};
-const inputOptions = {
-  placeholder: 'on',
-  autofocus: false,
-  id: '',
-  maxlength: 25,
-  name: 'telephone',
-  readonly: false,
-  required: true,
-  styleClasses: 'rounded-md',
-  tabindex: 0,
-  type: 'tel',
-  placeholder: 'Masukan nomor ponsel',
-};
+export default {
+  components: {
+    VueTelInput,
+  },
+  data() {
+    return {
+      phone: '',
+      error: '',
+      dropdownOptions: {
+        showDialCodeInList: true,
+        showDialCodeInSelection: true,
+        showFlags: true,
+        tabindex: 0,
+      },
+      inputOptions: {
+        placeholder: 'on',
+        autofocus: false,
+        id: '',
+        maxlength: 25,
+        name: 'telephone',
+        readonly: false,
+        required: true,
+        styleClasses: 'rounded-md',
+        tabindex: 0,
+        type: 'tel',
+        placeholder: 'Masukan nomor ponsel',
+      },
+    };
+  },
+  methods: {
+    async submitForm(e) {
+      if (!e.target.elements.telephone.value) {
+        return (this.error = 'Nomor Ponsel tidak boleh kosong');
+      }
 
-// state
-const phone = ref(null);
-const error = ref('')
+      if (e.target.elements.telephone.value.match(/[^\d\s-]/g)) {
+        return (this.error = 'Nomor Ponsel hanya dapat berupa angka');
+      }
+      this.error = ''
+      this.phone = e.target.elements.telephone.value
+        .replaceAll(/[^\d]/g, '')
+        .replace('62', '') //bug for number with 89xx62xx
 
-// methods
-const submitForm = (e) => {
-  if (!e.target.elements.telephone.value) {
-    return error.value = 'Nomor Ponsel tidak boleh kosong'
-  }
-
-  phone.value = e.target.elements.telephone.value
-    .replaceAll(/[^\d]/g, '')
-    .replace('62', '')
-
-  window.open(
-    `https://web.whatsapp.com/send?phone=62${phone.value}`,
-    '_blank',
-  );
+      window.open(
+        `https://web.whatsapp.com/send?phone=62${this.phone}`,
+        '_blank',
+      );
+    },
+  },
 };
 </script>
 
