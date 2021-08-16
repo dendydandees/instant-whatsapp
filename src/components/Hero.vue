@@ -8,6 +8,7 @@
       <div class="transition-all duration-300">
         <label for="phone" class="sr-only">Nomor Telepon</label>
         <VueTelInput
+          ref="inputTel"
           v-model="phone"
           :dropdownOptions="dropdownOptions"
           :inputOptions="inputOptions"
@@ -15,14 +16,15 @@
             my-2
             w-full
             rounded-md
-            border-gray-300
             text-gray-800
             shadow-sm
-            focus:border-purple-300
-            focus:ring
-            focus:ring-purple-400
-            focus:ring-opacity-50
+            focus:ring focus:ring-opacity-50
           "
+          :class="[
+            error
+              ? 'border-red-400 focus:border-red-400 focus:ring-red-400'
+              : 'border-gray-300 focus:border-purple-400 focus:ring-purple-400 ',
+          ]"
         ></VueTelInput>
 
         <span v-if="error" class="text-sm text-gray-200">
@@ -61,6 +63,7 @@ export default {
     return {
       phone: '',
       error: '',
+      isMobile: false,
       dropdownOptions: {
         showDialCodeInList: true,
         showDialCodeInSelection: true,
@@ -82,24 +85,38 @@ export default {
       },
     };
   },
+  created() {
+    if (navigator && navigator.userAgentData.mobile) {
+      this.isMobile = true;
+    }
+  },
   methods: {
     async submitForm(e) {
-      if (!e.target.elements.telephone.value) {
+      const { phoneObject } = this.$refs.inputTel;
+
+      if (!phoneObject.formatted) {
         return (this.error = 'Nomor Ponsel tidak boleh kosong');
       }
 
-      if (e.target.elements.telephone.value.match(/[^\d\s-]/g)) {
+      if (phoneObject.formatted.match(/[^\d\s-]/g)) {
         return (this.error = 'Nomor Ponsel hanya dapat berupa angka');
       }
-      this.error = ''
-      this.phone = e.target.elements.telephone.value
-        .replaceAll(/[^\d]/g, '')
-        .replace('62', '') //bug for number with 89xx62xx
 
-      window.open(
-        `https://web.whatsapp.com/send?phone=62${this.phone}`,
-        '_blank',
-      );
+      if (phoneObject.formatted.length <= 8) {
+        return (this.error = 'Nomor Ponsel minimal terdiri dari 8 angka');
+      }
+
+      this.error = '';
+      this.phone = phoneObject.number.replace('+', '');
+
+      if (this.isMobile) {
+        window.open(`whatsapp://send?phone=${this.phone}`, '_blank');
+      } else {
+        window.open(
+          `https://web.whatsapp.com/send?phone=${this.phone}`,
+          '_blank',
+        );
+      }
     },
   },
 };
