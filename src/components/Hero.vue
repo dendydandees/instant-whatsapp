@@ -1,7 +1,11 @@
 <template>
   <section>
-    <article class="p-4 bg-purple-600">
-      <h1 class="text-3xl text-gray-200">Instant Whatsapp</h1>
+    <article class="p-4 bg-purple-700 space-y-4">
+      <h1 class="text-3xl text-gray-200 font-bold">Instant Whatsapp</h1>
+      <p class="text-gray-300 w-full md:w-6/12">
+        Cara cepat berkirim pesan melalui WhatsApp tanpa perlu menyimpannya
+        terlebih dahulu di kontakmu.
+      </p>
     </article>
 
     <form @submit.prevent="submitForm" ref="form" class="p-4 space-y-6 my-8">
@@ -17,7 +21,7 @@
             w-full
             rounded-md
             text-gray-800
-            shadow-sm
+            shadow-xl
             focus:ring focus:ring-opacity-50
           "
           :class="[
@@ -25,7 +29,7 @@
               ? 'border-red-400 focus:border-red-400 focus:ring-red-400'
               : 'border-gray-300 focus:border-purple-400 focus:ring-purple-400 ',
           ]"
-        ></VueTelInput>
+        />
 
         <span v-if="error" class="text-sm text-gray-200">
           {{ error }}
@@ -39,6 +43,7 @@
           bg-purple-800
           text-gray-200
           rounded-sm
+          shadow-xl
           p-3
           font-bold
           hover:bg-purple-600
@@ -77,7 +82,7 @@ export default {
         maxlength: 25,
         name: 'telephone',
         readonly: false,
-        required: true,
+        required: false,
         styleClasses: 'rounded-md',
         tabindex: 0,
         type: 'tel',
@@ -122,4 +127,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scope>
+.vti__selection .vti__country-code {
+  color: #e5e7eb !important;
+}
+</style>
