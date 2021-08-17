@@ -2,7 +2,7 @@
   <section>
     <article class="p-4 bg-purple-700 space-y-4">
       <h1 class="text-3xl text-gray-200 font-bold">Instant Whatsapp</h1>
-      <p class="text-gray-300 w-full md:w-6/12">
+      <p class="text-gray-300 w-full md:w-8/12">
         Cara cepat berkirim pesan melalui WhatsApp tanpa perlu menyimpannya
         terlebih dahulu di kontakmu.
       </p>
