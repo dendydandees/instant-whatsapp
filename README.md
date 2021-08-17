@@ -26,18 +26,9 @@ Cara cepat berkirim pesan melalui WhatsApp tanpa perlu menyimpannya terlebih dah
 </br>
 </br>
 
-## Starting on Development
+## Development
 
-```
-## installation
-yarn
+1. Install dependencies using `yarn`
+2. Start development server using `yarn dev`
 
-## development server start
-yarn dev
-
-## build for production
-yarn build
-
-## start production server for preview
-yarn serve
-```
+For production you can bundle script using `yarn build`, then you can run it using `yarn serve`
