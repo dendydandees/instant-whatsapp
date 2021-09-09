@@ -103,7 +103,7 @@ export default {
         return (this.error = 'Nomor Ponsel tidak boleh kosong');
       }
 
-      if (phoneObject.formatted.match(/[^\d\s-]/g)) {
+      if (phoneObject.formatted.match(/[^\d\s-+]/g)) {
         return (this.error = 'Nomor Ponsel hanya dapat berupa angka');
       }
 
