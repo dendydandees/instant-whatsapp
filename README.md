@@ -21,7 +21,12 @@ Cara cepat berkirim pesan melalui WhatsApp tanpa perlu menyimpannya terlebih dah
 </br>
 </br>
 <p align="center">
-  <img src="./readme-image/screely-1629170523385.png" alt="Instant WhatsApp - Cara cepat berkirim pesan WhatsApp">
+  <img src="./readme-image/instant-whatsapp.vercel.app_.png" alt="Instant WhatsApp - Cara cepat berkirim pesan WhatsApp">
+
+  </br>
+  </br>
+
+  <img src="./readme-image/Instant-Whatsapp.png" alt="Instant WhatsApp - Cara cepat berkirim pesan WhatsApp">
 </p>
 </br>
 </br>
