@@ -1,12 +1,19 @@
 module.exports = {
-  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-  mode: 'jit',
-  darkMode: false, // or 'media' or 'class'
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Outfit', 'sans-serif']
+      }
+    },
   },
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/aspect-ratio'),
+  ]
 };

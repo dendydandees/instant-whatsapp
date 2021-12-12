@@ -1,0 +1,3 @@
+footer {
+  @apply text-center text-sm px-4 py-6 absolute bottom-0 w-full;
+}

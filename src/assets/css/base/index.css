@@ -1,0 +1,31 @@
+* {
+  @apply transition-all duration-300;
+}
+
+html {
+  @apply bg-black scroll-smooth;
+}
+
+#app {
+  @apply prose  w-full lg:w-6/12 mx-auto min-h-screen relative text-gray-200 text-base;
+}
+
+a {
+  @apply text-violet-500 font-bold hover:underline  hover:text-violet-600 hover:decoration-violet-600 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply text-gray-200 my-6 !important;
+}
+
+p {
+  @apply my-4 !important;
+}
+
+[type='text']:focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus {
+  @apply focus:border-violet-600 focus:ring focus:ring-violet-600 focus:ring-opacity-50;
+}
+
+.btn {
+  @apply w-full bg-violet-500 shadow-lg shadow-violet-600/50 text-gray-200 text-lg rounded-md py-5 font-bold hover:bg-violet-600 disabled:opacity-50 !important;
+}
