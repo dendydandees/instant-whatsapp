@@ -23,7 +23,7 @@ p {
 }
 
 [type='text']:focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus {
-  @apply focus:border-violet-600 focus:ring focus:ring-violet-600 focus:ring-opacity-50;
+  @apply caret-violet-500 focus:border-violet-600 focus:ring focus:ring-violet-600 focus:ring-opacity-50;
 }
 
 .btn {

@@ -1,5 +1,5 @@
 <template>
-    <section class="py-14 md:py-28">
+    <section class="py-10 md:py-28">
         <article class="px-4 text-center">
             <h1 class="hero-heading">Instant Whatsapp</h1>
             <p class="text-lg">
@@ -31,14 +31,16 @@
 
                 <div>
                     <label for="text" class="sr-only">Pesan</label>
-                    <input
+                    <textarea
                         v-model="form.text"
                         type="text"
                         name="text"
                         id="text"
+                        rows="3"
                         placeholder="Masukan pesan"
-                        class="input rounded-md py-4"
-                    />
+                        class="input rounded-md py-4 resize-y"
+                    >
+                    </textarea>
                 </div>
             </div>
 
